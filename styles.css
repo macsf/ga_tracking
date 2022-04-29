@@ -7,9 +7,28 @@ body {
 }
 
 #wrapper {
-  flex:1
+  flex: 1;
+}
+
+#wrapperMisc {
+  display: flex;
 }
 
 .footer {
   padding: 2rem 1rem 2rem !important;
+}
+
+.title strong {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card .card-footer {
+  margin-top: auto;
 }
