@@ -8,6 +8,15 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="script.js"></script>
     <title>Homepage | My Website</title>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8DZJ1DBYS2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8DZJ1DBYS2');
+</script>
 </head>
 
 <body>
@@ -30,6 +39,12 @@
                 <div class="navbar-end">
                     <a href="./about.html" class="navbar-item">About</a>
                     <a href="./contact.html" class="navbar-item">Contact</a>
+
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <div class="button is-primary" id="loginButton">Login</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -52,13 +67,13 @@
                 <div class="column is-quarter">
                     <div class="card">
                         <div class="card-image">
-                            <a href="./product1.html">
+                            <a id="product1" onclick="return false;">
                                 <figure class="image is-4by3"> <img src="https://picsum.photos/id/0/200" alt=""> </figure>
                             </a>
                         </div>
                         <div class="card-content">
                             <div class="content">
-                                <h3 class="title is-5"><a href="./product1.html">Product One</a></h3>
+                                <h3 class="title is-5"><a id="product1" onclick="return false;">Product One</a></h3>
                                 <p>The primary theme of the works of Burroughs is the defining characteristic,
                                     and some would say the stasis, of textual language.</p>
                             </div>
@@ -73,13 +88,13 @@
                 <div class="column is-quarter">
                     <div class="card">
                         <div class="card-image">
-                            <a href="./product2.html">
+                            <a id="product2" onclick="return false;">
                                 <figure class="image is-4by3"> <img src="https://picsum.photos/id/1068/200" alt=""> </figure>
                             </a>
                         </div>
                         <div class="card-content">
                             <div class="content">
-                                <h3 class="title is-5"><a href="./product2.html">Product Two</a></h3>
+                                <h3 class="title is-5"><a id="product2" onclick="return false;">Product Two</a></h3>
                                 <p>Therefore, predialectic discourse states that narrativity serves to oppress
                                     minorities. The main theme of the works of Burroughs is a mythopoetical
                                     totality.</p>
@@ -95,13 +110,13 @@
                 <div class="column is-quarter">
                     <div class="card">
                         <div class="card-image">
-                            <a href="./product3.html">
+                            <a id="product3" onclick="return false;">
                                 <figure class="image is-4by3"> <img src="https://picsum.photos/id/104/200" alt=""> </figure>
                             </a>
                         </div>
                         <div class="card-content">
                             <div class="content">
-                                <h3 class="title is-5"><a href="./product3.html">Product Three</a></h3>
+                                <h3 class="title is-5"><a id="product3" onclick="return false;">Product Three</a></h3>
                                 <p>But Sartre uses the term ‘subcapitalist deconstruction’ to denote the common
                                     ground between sexual identity and society. </p>
                             </div>
@@ -116,13 +131,13 @@
                 <div class="column is-quarter">
                     <div class="card">
                         <div class="card-image">
-                            <a href="./product4.html">
+                            <a id="product4" onclick="return false;">
                                 <figure class="image is-4by3"> <img src="https://picsum.photos/id/1060/200" alt=""> </figure>
                             </a>
                         </div>
                         <div class="card-content">
                             <div class="content">
-                                <h3 class="title is-5"><a href="./product4.html">Product Four</a></h3>
+                                <h3 class="title is-5"><a id="product4" onclick="return false;">Product Four</a></h3>
                                 <p>In the works of Pynchon, a predominant concept is the concept of cultural
                                     language.</p>
                             </div>

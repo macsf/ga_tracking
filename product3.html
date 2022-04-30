@@ -9,6 +9,16 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="script.js"></script>
     <title>Product 3 | My Website</title>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8DZJ1DBYS2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8DZJ1DBYS2');
+</script>
 </head>
 
 <body>
@@ -31,6 +41,12 @@
                 <div class="navbar-end">
                     <a href="./about.html" class="navbar-item">About</a>
                     <a href="./contact.html" class="navbar-item">Contact</a>
+
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <div class="button is-primary" id="loginButton">Login</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -51,7 +67,7 @@
                     <p class="title is-4">Product 3 Detail</p>
                 </div>
 
-                <div class="button is-link my-4">Add to Cart</div>
+                <div id="addToCart" class="button is-link my-4">Add to Cart</div>
 
                 <p><a href="./products.html">View Other Products</a></p>
               </div>
