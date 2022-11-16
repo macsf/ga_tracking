@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="script.js"></script>
+    <title>Homepage | My Website</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8DZJ1DBYS2"></script>
+    <script>
+        const uid = Math.floor(Math.random() * 100)
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("set", {
+            user_id: uid
+        })
+        gtag("config", "G-8DZJ1DBYS2", {
+            "debug_mode": true
+        });
+    </script>
+</head>
+
+<body>
+    <div id="wrapper" class="container">
+
+        <h1>Earn Points</h1>
+        <div class="buttons">
+            <div class="button is-primary" id="addPoints">Add some points</div>
+        </div>
+
+        <h1>Redeem Product</h1>
+        <div class="buttons">
+            <div class="button is-warning" id="selectItem">Select this item</div>
+            <div class="button is-info" id="redeemItem">Redeem</div>
+            <div class="button is-primary" id="confirmRedeemItem">Confirm Redeem</div>
+            <div class="button is-info" id="addShippingInfo">Add shipping info</div>
+            <div class="button is-info" id="addPaymentInfo">Add payment info</div>
+            <div class="button is-danger" id="redeemError">Redeem Error</div>
+            <div class="button is-primary" id="useRedemption">Use Redemption</div>
+        </div>
+
+
+        <h1>Redeem Top-up</h1>
+        <div class="buttons">
+            <div class="button is-warning" id="selectItemTopup">Select this item</div>
+            <div class="button is-info" id="redeemItemTopup">Redeem</div>
+            <div class="button is-primary" id="confirmRedeemItemTopup">Confirm Redeem</div>
+            <div class="button is-primary" id="topupSuccess">Topup Success</div>
+        </div>
+
+        <h1>Mission</h1>
+        <div class="buttons">
+            <div class="button is-warning is-light" id="beginPointCollection">Begin Point Collection</div>
+            <div class="button is-primary" id="collectPointCollectionRewards">Collect Point Collection Rewards</div>
+        </div>
+        <div class="buttons">
+            <div class="button is-warning is-light" id="beginSurvey">Begin Survey</div>
+            <div class="button is-primary" id="collectSurveyRewards">Collect Survey Rewards</div>
+        </div>
+        <div class="buttons">
+            <div class="button is-warning is-light" id="beginShare">Invite Friend</div>
+            <div class="button is-primary" id="collectShareRewards">Collect Share Rewards</div>
+        </div>
+
+        <h1>View Content</h1>
+        <div class="buttons">
+            <div class="button" id="updateProfile">Update Profile</div>
+            <div class="button" id="updateConsent">Update Consent</div>
+            <div class="button" id="viewPointHistory">Point History</div>
+            <div class="button" id="viewFaq">FAQ</div>
+        </div>
+
+        <h1>Profile</h1>
+        <div class="buttons">
+            <div class="button" id="submitUpdateProfile">Submit Update Profile</div>
+        </div>
+
+        <h1>Main Nav</h1>
+        <div class="buttons">
+            <div class="button" id="navLuckyDraw">Lucky Draw</div>
+            <div class="button" id="navPremium">Premium</div>
+            <div class="button" id="navEarnPoint">Earn Point</div>
+            <div class="button" id="navMission">Mission</div>
+            <div class="button" id="navWallet">Wallet</div>
+        </div>
+
+        <div class="box" id="output"></div>
+
+        <div class="buttons">
+            <div class="button" id="changeTextBelow">Change Text Below</div>
+            <div class="button" id="changeTextBelowAgain">Change Text Below Again</div>
+        </div>
+
+        <div class="box" id="below"><div></div></div>
+    </div>
+
+
+    <script>
+        window.addEventListener("load", () => {
+            gtag("event", "page_view", {
+                page_name: "Test Tagging"
+            })
+        })
+
+        const outputText = document.getElementById("output")
+
+        const $btnAddPoints = document.getElementById("addPoints");
+        $btnAddPoints.addEventListener("click", () => {
+            gtag("event", "earn_virtual_currency", {
+                virtual_currency_name: "mypoint",
+                value: 10
+            })
+
+            outputText.innerHTML = "Earned some points"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnSelectItem = document.getElementById("selectItem");
+        $btnSelectItem.addEventListener("click", () => {
+            gtag("event", "select_item", {
+                section_name: "redemption",
+                item_list_name: "privilege",
+                item_id: "x1",
+                item_name: "product_for_one_bath",
+                item_category: "product_redeem"
+            })
+
+            outputText.innerHTML = "Choose to redeem product"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnRedeemItem = document.getElementById("redeemItem");
+        $btnRedeemItem.addEventListener("click", () => {
+            gtag("event", "click_redeem", {
+                section_name: "redemption",
+                item_id: "x1",
+                item_name: "product_for_one_bath",
+                item_category: "product_redeem",
+                price: 10.0,
+                virtual_currency_name: "mypoint",
+                value: 2.0
+            })
+
+            outputText.innerHTML = "Redeem product"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnConfirmRedeemItem = document.getElementById("confirmRedeemItem");
+        $btnConfirmRedeemItem.addEventListener("click", () => {
+            gtag("event", "spend_virtual_currency", {
+                section_name: "redemption",
+                item_id: "x1",
+                item_name: "product_for_one_bath",
+                item_category: "product_redeem",
+                price: 10.0,
+                virtual_currency_name: "mypoint",
+                value: 2.0
+            })
+
+
+            outputText.innerHTML = "Redeem product Successful"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnAddShippingInfo = document.getElementById("addShippingInfo");
+        $btnAddShippingInfo.addEventListener("click", () => {
+            gtag("event", "add_shipping_info", {
+                section_name: "redemption",
+                item_id: "x1",
+                item_name: "product_for_one_bath",
+                item_category: "product_redeem",
+                price: 10.0
+            })
+
+            outputText.innerHTML = "Add shipping information"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnAddPaymentInfo = document.getElementById("addPaymentInfo");
+        $btnAddPaymentInfo.addEventListener("click", () => {
+            gtag("event", "add_payment_info", {
+                section_name: "redemption",
+                payment_type: "transfer_slip",
+                currency: "THB",
+                value: 100,
+                item_id: "x1",
+                item_name: "premium_redeem",
+                item_category: "tshirt",
+                item_category2: "เสือ ลายข่วน ไซส์ S",
+                price: 10.0
+            })
+
+            outputText.innerHTML = "Add payment information"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnRedeemError = document.getElementById("redeemError");
+        $btnRedeemError.addEventListener("click", () => {
+            gtag("event", "exceptions", {
+                section_name: "redemption",
+                description: "not_enough_points",
+                item_id: "x1",
+                item_name: "product_for_one_bath",
+                item_category: "product_redeem"
+            })
+
+            outputText.innerHTML = "Redeem error"
+            outputText.classList.remove("has-background-success-light")
+            outputText.classList.add("has-background-danger-light")
+        })
+
+        const $btnUseRedemption = document.getElementById("useRedemption");
+        $btnUseRedemption.addEventListener("click", () => {
+            gtag("event", "redeem_complete", {
+                section_name: "redemption",
+                action_name: "coupon_used",
+                item_id: "x1",
+                item_name: "product_for_one_bath",
+                item_category: "product_redeem",
+            })
+
+            outputText.innerHTML = "Successfully used redemption"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnSelectItemTopup = document.getElementById("selectItemTopup");
+        $btnSelectItemTopup.addEventListener("click", () => {
+            gtag("event", "select_item", {
+                section_name: "redemption",
+                item_list_name: "privilege",
+                item_id: "x2",
+                item_name: "topup_dtac",
+                item_category: "mobile_topup"
+            })
+
+            outputText.innerHTML = "Choose to redeem mobile topup"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnRedeemItemTopup = document.getElementById("redeemItemTopup");
+        $btnRedeemItemTopup.addEventListener("click", () => {
+            gtag("event", "click_redeem", {
+                section_name: "redemption",
+                item_id: "x2",
+                item_name: "topup_dtac",
+                item_category: "mobile_topup",
+                price: 5.0,
+                virtual_currency_name: "mypoint",
+                value: 1.0
+            })
+
+            outputText.innerHTML = "Redeem topup"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnConfirmRedeemItemTopup = document.getElementById("confirmRedeemItemTopup");
+        $btnConfirmRedeemItemTopup.addEventListener("click", () => {
+            gtag("event", "spend_virtual_currency", {
+                section_name: "redemption",
+                item_id: "x2",
+                item_name: "topup_dtac",
+                item_category: "mobile_topup",
+                price: 5.0,
+                virtual_currency_name: "mypoint",
+                value: 1.0
+            })
+
+            outputText.innerHTML = "Redeem topup successful"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnTopupSuccess = document.getElementById("topupSuccess");
+        $btnTopupSuccess.addEventListener("click", () => {
+            gtag("event", "redeem_complete", {
+                section_name: "redemption",
+                action_name: "topup_success",
+                item_id: "x1",
+                item_name: "product_for_one_bath",
+                item_category: "product_redeem",
+            })
+
+            outputText.innerHTML = "Successful topup"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnBeginPointCollection = document.getElementById("beginPointCollection");
+        $btnBeginPointCollection.addEventListener("click", () => {
+            gtag("event", "click_begin_mission", {
+                section_name: "mission",
+                activity_name: "point_collection"
+            })
+
+            outputText.innerHTML = "Begin point collection mission"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnCollectPointCollectionRewards = document.getElementById("collectPointCollectionRewards");
+        $btnCollectPointCollectionRewards.addEventListener("click", () => {
+            gtag("event", "unlock_achievement", {
+                section_name: "mission",
+                activity_name: "point_collection"
+            })
+
+            outputText.innerHTML = "Unlock point collection rewards"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnBeginSurvey = document.getElementById("beginSurvey");
+        $btnBeginSurvey.addEventListener("click", () => {
+            gtag("event", "click_begin_mission", {
+                section_name: "mission",
+                activity_name: "survey"
+            })
+
+            outputText.innerHTML = "Begin survey mission"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnCollectSurveyRewards = document.getElementById("collectSurveyRewards");
+        $btnCollectSurveyRewards.addEventListener("click", () => {
+            gtag("event", "unlock_achievement", {
+                section_name: "mission",
+                activity_name: "survey"
+            })
+
+            outputText.innerHTML = "Unlock survey rewards"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnBeginShare = document.getElementById("beginShare");
+        $btnBeginShare.addEventListener("click", () => {
+            gtag("event", "share", {
+                method: "line",
+                section_name: "mission",
+                activity_name: "invite_friend"
+            })
+
+
+            outputText.innerHTML = "Invite friends"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnCollectShareRewards = document.getElementById("collectShareRewards");
+        $btnCollectShareRewards.addEventListener("click", () => {
+            gtag("event", "unlock_achievement", {
+                section_name: "mission",
+                activity_name: "invite_friend"
+            })
+
+            outputText.innerHTML = "Friends signed up"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnUpdateProfile = document.getElementById("updateProfile");
+        $btnUpdateProfile.addEventListener("click", () => {
+            gtag("event", "select_content", {
+                section_name: "membership",
+                content_name: "profile"
+            })
+
+            outputText.innerHTML = "View profile page (to update)"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnUpdateConsent = document.getElementById("updateConsent");
+        $btnUpdateConsent.addEventListener("click", () => {
+            gtag("event", "select_content", {
+                section_name: "membership",
+                content_name: "consent"
+            })
+
+            outputText.innerHTML = "View consent page (to update)"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnViewPointHistory = document.getElementById("viewPointHistory");
+        $btnViewPointHistory.addEventListener("click", () => {
+            gtag("event", "select_content", {
+                section_name: "membership",
+                content_name: "point_history"
+            })
+
+            outputText.innerHTML = "View point history"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnViewFaq = document.getElementById("viewFaq");
+        $btnViewFaq.addEventListener("click", () => {
+            gtag("event", "select_content", {
+                section_name: "membership",
+                content_name: "faq"
+            })
+
+            outputText.innerHTML = "View FAQ"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnSubmitUpdateProfile = document.getElementById("submitUpdateProfile");
+        $btnSubmitUpdateProfile.addEventListener("click", () => {
+            gtag("event", "form_submit", {
+                section_name: "membership",
+                action_name: "update_profile",
+                form_id: "customer_information",
+                form_name: "Customer Information",
+                form_source: "registration"
+            })
+
+            outputText.innerHTML = "Submit Update Profile"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        const $btnNavLuckyDraw = document.getElementById("navLuckyDraw")
+        const $btnNavPremium = document.getElementById("navPremium")
+        const $btnNavEarnPoint = document.getElementById("navEarnPoint")
+        const $btnNavMission = document.getElementById("navMission")
+        const $btnNavWallet = document.getElementById("navWallet")
+
+        $btnNavLuckyDraw.addEventListener("click", () => {
+            gtag("event", "select_content", {
+                section_name: "main_nav",
+                content_name: "lucky_draw"
+            })
+
+            outputText.innerHTML = "Click <em>lucky draw</em> from main navigation"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        $btnNavPremium.addEventListener("click", () => {
+            gtag("event", "select_content", {
+                section_name: "main_nav",
+                content_name: "premium"
+            })
+
+            outputText.innerHTML = "Click <em>premium</em> from main navigation"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        $btnNavEarnPoint.addEventListener("click", () => {
+            gtag("event", "select_content", {
+                section_name: "main_nav",
+                content_name: "earn_point"
+            })
+
+            outputText.innerHTML = "Click <em>earn point</em> from main navigation"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        $btnNavMission.addEventListener("click", () => {
+            gtag("event", "select_content", {
+                section_name: "main_nav",
+                content_name: "mission"
+            })
+
+            outputText.innerHTML = "Click <em>mission</em> from main navigation"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+        $btnNavWallet.addEventListener("click", () => {
+            gtag("event", "select_content", {
+                section_name: "main_nav",
+                content_name: "wallet"
+            })
+
+            outputText.innerHTML = "Click <em>wallet</em> from main navigation"
+            outputText.classList.remove("has-background-danger-light")
+            outputText.classList.add("has-background-success-light")
+        })
+
+
+        const belowText = document.getElementById("below")
+        const $btnBelow = document.getElementById("changeTextBelow");
+        const $btnBelowAgain = document.getElementById("changeTextBelowAgain");
+
+        $btnBelow.addEventListener("click", () => {
+            belowText.innerHTML = "Text changed."
+        })
+
+        $btnBelowAgain.addEventListener("click", () => {
+            belowText.innerHTML ="Text changed again."
+        })
+
+    </script>
+</body>
+
+</html>
