@@ -12,33 +12,25 @@
     pre {
       padding-bottom: 0;
     }
-  </style>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8DZJ1DBYS2"></script>
-  <script>
-    // const uid = Math.floor(Math.random() * 100)
-    window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-    // gtag("set", {
-    //     user_id: uid
-    // })
-    gtag("config", "G-8DZJ1DBYS2", {
+    .container { height: 4000px; }
+  </style>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P6BS5MX');</script>
+  <!-- End Google Tag Manager -->
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push("config", "G-8DZJ1DBYS2", {
       "debug_mode": true
     });
-  </script>
-  <script>
-    // window.dataLayer = window.dataLayer || [];
-
-    // window.dataLayer.push({
-    //   "event": "virtual_page_view",
-    //   "page_url": "https://macsf.dev/p/ga_tagging/spa_test.html",
-    //   "page_title": "Single-Page App GA Tagging | Home",
-    //   "page_section": "Home"
-    // });
-    gtag("event", "virtual_page_view", {
+    window.dataLayer.push({
+      "event": "virtual_page_view",
       "page_url": "https://macsf.dev/p/ga_tagging/spa_test.html",
       "page_title": "Single-Page App GA Tagging | Home",
       "page_section": "Home"
@@ -47,6 +39,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6BS5MX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <section class="section">
     <div class="container">
       <h1 class="title">
@@ -84,7 +81,7 @@
       idx = false;
 
       dataLayer.forEach((d, i) => {
-        if (d[0] == "event" && d[1] == "virtual_page_view") {
+        if (d["event"] == "virtual_page_view") {
           idx = i;
         }
       });
@@ -93,14 +90,14 @@
     }
 
     const update = (i) => {
-      // document.querySelector("#layer").innerHTML = dataLayer[0];
-      document.querySelector("#tab-name").innerHTML = dataLayer[i][2].page_section;
+      // document.querySelector("#layer").innerHTML = window.dataLayer[0];
+      document.querySelector("#tab-name").innerHTML = window.dataLayer[i].page_section;
 
-      document.querySelector("#dl-event").innerHTML = dataLayer[i][1];
-      document.querySelector("#dl-url").innerHTML = dataLayer[i][2].page_url;
-      document.querySelector("#dl-title").innerHTML = dataLayer[i][2].page_title;
+      document.querySelector("#dl-event").innerHTML = window.dataLayer[i].event;
+      document.querySelector("#dl-url").innerHTML = window.dataLayer[i].page_url;
+      document.querySelector("#dl-title").innerHTML = window.dataLayer[i].page_title;
 
-      document.title = dataLayer[i][2].page_title;
+      document.title = window.dataLayer[i].page_title;
     }
 
     [...$menu].forEach((m) => {
@@ -114,9 +111,10 @@
 
         sel.classList.add("is-active");
 
-        dataLayer.splice(vpv_index(), 1)
+        window.dataLayer.splice(vpv_index(), 1)
 
-        gtag("event", "virtual_page_view", {
+        window.dataLayer.push({
+          "event": "virtual_page_view",
           "page_url": "https://macsf.dev/p/ga_tagging/spa_test.html" + page_tag,
           "page_title": "Single-Page App GA Tagging | " + page_section_name + " Page",
           "page_section": page_section_name
