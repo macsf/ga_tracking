@@ -1,0 +1,135 @@
+<!-- https://bulma.io/documentation/overview/start/ -->
+<!-- https://www.optimizesmart.com/single-page-apps-in-google-analytics-4/ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SPA Tagging</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <style>
+    pre {
+      padding-bottom: 0;
+    }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8DZJ1DBYS2"></script>
+  <script>
+    // const uid = Math.floor(Math.random() * 100)
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    // gtag("set", {
+    //     user_id: uid
+    // })
+    gtag("config", "G-8DZJ1DBYS2", {
+      "debug_mode": true
+    });
+  </script>
+  <script>
+    // window.dataLayer = window.dataLayer || [];
+
+    // window.dataLayer.push({
+    //   "event": "virtual_page_view",
+    //   "page_url": "https://macsf.dev/p/ga_tagging/spa_test.html",
+    //   "page_title": "Single-Page App GA Tagging | Home",
+    //   "page_section": "Home"
+    // });
+    gtag("event", "virtual_page_view", {
+      "page_url": "https://macsf.dev/p/ga_tagging/spa_test.html",
+      "page_title": "Single-Page App GA Tagging | Home",
+      "page_section": "Home"
+    });
+  </script>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        SPA Tagging
+      </h1>
+
+      <div class="tabs">
+        <ul>
+          <li class="is-active" id="home"><a>Home</a></li>
+          <li id="pictures"><a>Pictures</a></li>
+          <li id="music"><a>Music</a></li>
+          <li id="video"><a>Videos</a></li>
+          <li id="documents"><a>Documents</a></li>
+        </ul>
+      </div>
+
+      <div class="box">
+        The <strong id="tab-name">Home</strong> tab is selected.
+      </div>
+
+      <div class="">
+        <pre id="layer">
+          <strong>Event</strong>: <span id="dl-event"></span>
+          <strong>Page URL</strong>: <span id="dl-url"></span>
+          <strong>Page Title</strong>: <span id="dl-title"></span>
+        </pre>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const $menu = document.querySelectorAll("li");
+
+    const vpv_index = () =>  {
+      idx = false;
+
+      dataLayer.forEach((d, i) => {
+        if (d[0] == "event" && d[1] == "virtual_page_view") {
+          idx = i;
+        }
+      });
+
+      return idx;
+    }
+
+    const update = (i) => {
+      // document.querySelector("#layer").innerHTML = dataLayer[0];
+      document.querySelector("#tab-name").innerHTML = dataLayer[i][2].page_section;
+
+      document.querySelector("#dl-event").innerHTML = dataLayer[i][1];
+      document.querySelector("#dl-url").innerHTML = dataLayer[i][2].page_url;
+      document.querySelector("#dl-title").innerHTML = dataLayer[i][2].page_title;
+
+      document.title = dataLayer[i][2].page_title;
+    }
+
+    [...$menu].forEach((m) => {
+      m.addEventListener("click", (e) => {
+        sel = e.composedPath()[1];
+        page_tag = (sel.id == "home" ? "" : "#" + sel.id);
+        page_section_name = sel.id.charAt(0).toUpperCase() + sel.id.slice(1);
+
+        is_active_menu = document.querySelector(".is-active");
+        is_active_menu.classList.remove("is-active");
+
+        sel.classList.add("is-active");
+
+        dataLayer.splice(vpv_index(), 1)
+
+        gtag("event", "virtual_page_view", {
+          "page_url": "https://macsf.dev/p/ga_tagging/spa_test.html" + page_tag,
+          "page_title": "Single-Page App GA Tagging | " + page_section_name + " Page",
+          "page_section": page_section_name
+        });
+
+        update(vpv_index());
+      });
+    });
+
+    window.addEventListener("load", () => {
+      update(vpv_index());
+    });
+  </script>
+</body>
+
+</html>
