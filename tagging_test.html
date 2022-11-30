@@ -44,7 +44,7 @@
             <div class="button is-info" id="addShippingInfo">Add shipping info</div>
             <div class="button is-info" id="addPaymentInfo">Add payment info</div>
             <div class="button is-danger" id="redeemError">Redeem Error</div>
-            <div class="button is-primary" id="useRedemption">Use Redemption</div>
+            <!-- <div class="button is-primary" id="useRedemption">Use Redemption</div> -->
         </div>
 
 
@@ -53,7 +53,7 @@
             <div class="button is-warning" id="selectItemTopup">Select this item</div>
             <div class="button is-info" id="redeemItemTopup">Redeem</div>
             <div class="button is-primary" id="confirmRedeemItemTopup">Confirm Redeem</div>
-            <div class="button is-primary" id="topupSuccess">Topup Success</div>
+            <!-- <div class="button is-primary" id="topupSuccess">Topup Success</div> -->
         </div>
 
         <h1>Mission</h1>
@@ -223,20 +223,20 @@
             outputText.classList.add("has-background-danger-light")
         })
 
-        const $btnUseRedemption = document.getElementById("useRedemption");
-        $btnUseRedemption.addEventListener("click", () => {
-            gtag("event", "redeem_complete", {
-                section_name: "redemption",
-                action_name: "coupon_used",
-                item_id: "x1",
-                item_name: "product_for_one_bath",
-                item_category: "product_redeem",
-            })
+        // const $btnUseRedemption = document.getElementById("useRedemption");
+        // $btnUseRedemption.addEventListener("click", () => {
+        //     gtag("event", "redeem_complete", {
+        //         section_name: "redemption",
+        //         action_name: "coupon_used",
+        //         item_id: "x1",
+        //         item_name: "product_for_one_bath",
+        //         item_category: "product_redeem",
+        //     })
 
-            outputText.innerHTML = "Successfully used redemption"
-            outputText.classList.remove("has-background-danger-light")
-            outputText.classList.add("has-background-success-light")
-        })
+        //     outputText.innerHTML = "Successfully used redemption"
+        //     outputText.classList.remove("has-background-danger-light")
+        //     outputText.classList.add("has-background-success-light")
+        // })
 
         const $btnSelectItemTopup = document.getElementById("selectItemTopup");
         $btnSelectItemTopup.addEventListener("click", () => {
@@ -287,20 +287,20 @@
             outputText.classList.add("has-background-success-light")
         })
 
-        const $btnTopupSuccess = document.getElementById("topupSuccess");
-        $btnTopupSuccess.addEventListener("click", () => {
-            gtag("event", "redeem_complete", {
-                section_name: "redemption",
-                action_name: "topup_success",
-                item_id: "x1",
-                item_name: "product_for_one_bath",
-                item_category: "product_redeem",
-            })
+        // const $btnTopupSuccess = document.getElementById("topupSuccess");
+        // $btnTopupSuccess.addEventListener("click", () => {
+        //     gtag("event", "redeem_complete", {
+        //         section_name: "redemption",
+        //         action_name: "topup_success",
+        //         item_id: "x1",
+        //         item_name: "product_for_one_bath",
+        //         item_category: "product_redeem",
+        //     })
 
-            outputText.innerHTML = "Successful topup"
-            outputText.classList.remove("has-background-danger-light")
-            outputText.classList.add("has-background-success-light")
-        })
+        //     outputText.innerHTML = "Successful topup"
+        //     outputText.classList.remove("has-background-danger-light")
+        //     outputText.classList.add("has-background-success-light")
+        // })
 
         const $btnBeginPointCollection = document.getElementById("beginPointCollection");
         $btnBeginPointCollection.addEventListener("click", () => {
